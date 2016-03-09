@@ -34,7 +34,7 @@ $response = array();
 			    // Commit - this line never runs if there is an error
 			    $db->TransactionEnd();
 
-			    $response['ok'] = 'Verifier la table de gps_client ' . $sql;
+			    $response['ok'] = 'Verifier la table de gps_client';
 				die(json_encode($response));
 			} catch(Exception $e) {
 
