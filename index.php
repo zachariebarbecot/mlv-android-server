@@ -54,7 +54,7 @@
                 // Loop through the records using a counter and display the values
                 for ($index = 0; $index < $db->RowCount(); $index++) {
                     $row = $db->Row($index);
-                    $level = ($row->battery > 0 && $row->battery <= 20)?"fa-battery-0":(($row->battery > 20 && $row->battery <= 40)?"fa-battery-1":(($row->battery > 40 && $row->battery <= 60)?"fa-battery-2":(($row->battery > 60 && $row->battery <= 80)?"fa-battery-3":"fa-battery-4")));
+                    $level = ($row->battery > 0 && $row->battery <= 0.20)?"fa-battery-0":(($row->battery > 0.20 && $row->battery <= 0.40)?"fa-battery-1":(($row->battery > 0.40 && $row->battery <= 0.60)?"fa-battery-2":(($row->battery > 0.60 && $row->battery <= 0.80)?"fa-battery-3":"fa-battery-4")));
 
 
                     $html  = '<center><strong>Phone N° '.$row->imei.'</strong></center>';
