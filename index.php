@@ -32,10 +32,12 @@
                 <?php
 
                 require 'class/mysql.php';
-                $db = new MySQL(true, "database", "server", "login", "password");
+                $db = new MySQL(true, "database", "hostname", "login", "password");
                 if ($db->Error()) $db->Kill();
                 // Execute our query
-                if (! $db->Query("SELECT tbl.* FROM (SELECT * FROM gps_client ORDER BY date_gps DESC) as tbl GROUP BY imei")) $db->Kill();
+                if (! $db->Query($sql = "SELECT *"
+                    . " FROM gps_client gc WHERE gc.score = (SELECT MAX(score)"
+                    . " FROM gps_client gcl WHERE gcl.imei = gc.imei) GROUP BY imei")) $db->Kill();
 
 
 

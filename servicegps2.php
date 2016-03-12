@@ -1,13 +1,14 @@
 <?php
 
 require 'class/mysql.php';
-$db = new MySQL(true, "1096879", "localhost", "1096879", "sarakridane1992");
+$db = new MySQL(true, "database", "hostname", "login", "password");
 
 
 $response = array();
 
-        $sql = "SELECT imei, latitude, longitude, MAX(date_gps) as date_gps, score"
-            . " FROM gps_client GROUP BY imei";
+        $sql = "SELECT imei, latitude, longitude, date_gps, score "
+            . " FROM gps_client gc WHERE gc.score = (SELECT MAX(score)"
+            . " FROM gps_client gcl WHERE gcl.imei = gc.imei) GROUP BY imei";
 
 			try {
 			    // Begin our transaction
